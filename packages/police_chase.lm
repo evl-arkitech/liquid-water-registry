@@ -1,0 +1,57 @@
+display "Loading Police Chase 3D Engine..."
+IntentionTO "Start 3D Engine"
+
+set score to 0
+set speed to 10
+display "Score: 0"
+
+|| Player
+paint Player "cyan"
+shape Player "cube"
+spawn Player at 0 0
+
+|| Police
+paint Police "blue"
+shape Police "cube"
+spawn Police at 0 -20
+
+|| Define Game Loop
+define action updateGame
+    move Player forward
+    
+    set randomX to random between -5 and 5
+    paint Obstacle "red"
+    shape Obstacle "cube"
+    spawn Obstacle at randomX 50
+    
+    paint Beer "yellow"
+    shape Beer "sphere"
+    spawn Beer at randomX 60
+end
+
+on update perform updateGame
+
+|| Controls
+define action goLeft
+    move Player left
+end
+bind "a" to goLeft
+
+define action goRight
+    move Player right
+end
+bind "d" to goRight
+
+|| Physics / Collisions
+define action hitObstacle
+    display "Hit Barricade! Slowing down..."
+end
+when Player touches Obstacle perform hitObstacle
+
+define action hitBeer
+    display "Got a Beer! Speed Boost!"
+    add 100 to score
+end
+when Player touches Beer perform hitBeer
+
+IntentionTO "Keep 3D Engine Running"
