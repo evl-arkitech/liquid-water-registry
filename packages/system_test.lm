@@ -1,0 +1,6 @@
+display "Absorbing Math Module..."
+absorb "math_module.lm"
+
+display "Running Foreign Function Interface..."
+set finalAnswer to perform advancedMath
+display "The Native Python Engine returned: {finalAnswer}"

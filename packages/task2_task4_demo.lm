@@ -1,0 +1,22 @@
+|| Liquid Matter Infix Expressions & Native Dictionaries Demonstration
+
+create dictionary user_profile
+set key "username" of user_profile to "Sophia_Serpent"
+set key "score" of user_profile to (100 * 5) + 250
+set key "active" of user_profile to 1
+
+get key "username" from user_profile into user_name
+get key "score" from user_profile into user_score
+
+display "User Name: {user_name}"
+display "User Score: {user_score}"
+
+if user_score > 500 and user_name is "Sophia_Serpent" then
+    display "High Score & Verified Identity Check: PASSED!"
+else
+    display "Verification Failed"
+end
+
+if not (user_score < 100) then
+    display "Compound Boolean NOT Test: PASSED!"
+end

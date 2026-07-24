@@ -1,0 +1,53 @@
+|| Liquid Matter v3.0 Application Demo
+|| Demonstrates natural language control flow, native dictionaries, infix math, and functions
+
+display "=========================================================="
+display "          LIQUID MATTER v3.0 APP DEMO                     "
+display "=========================================================="
+
+|| Create a dictionary to hold inventory state
+create dictionary inventory
+set key "apples" of inventory to 10
+set key "oranges" of inventory to 25
+set key "bananas" of inventory to 15
+
+|| Function to calculate total inventory count using infix math
+define action calculate_total
+    get key "apples" from inventory into a
+    get key "oranges" from inventory into o
+    get key "bananas" from inventory into b
+    
+    set total to a + o + b
+    display "Current Total Inventory Count: {total} items"
+    return total
+end
+
+|| Function to make a transaction
+define action purchase_item with item_name and quantity
+    display "Processing purchase: {quantity} x {item_name}..."
+    
+    get key item_name from inventory into current_stock
+    
+    if current_stock >= quantity then
+        set remaining to current_stock - quantity
+        set key item_name of inventory to remaining
+        display "Purchase successful! Remaining {item_name}: {remaining}"
+    else
+        display "Purchase failed: Not enough {item_name} in stock!"
+    end
+end
+
+|| Run application sequence
+perform calculate_total
+
+display ""
+perform purchase_item with "apples" and 4
+perform purchase_item with "oranges" and 10
+
+display ""
+display "Recalculating after purchases:"
+perform calculate_total
+
+display "=========================================================="
+display "              DEMO COMPLETED SUCCESSFULLY                 "
+display "=========================================================="

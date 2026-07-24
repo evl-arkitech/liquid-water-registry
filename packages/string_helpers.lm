@@ -1,0 +1,15 @@
+|| Water Registry Package Sample: Natural Language String & Data Helper (string_helpers.lm)
+|| Demonstrates list manipulation, formatting, and string construction
+
+define action formatUserProfile with name and score and status
+    create dictionary profile
+    set key "name" of profile to name
+    set key "score" of profile to score
+    set key "status" of profile to status
+    return profile
+end
+
+define action createTagList with tag1 and tag2 and tag3
+    create list tag_list containing tag1, tag2, tag3
+    return tag_list
+end

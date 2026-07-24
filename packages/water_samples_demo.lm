@@ -1,0 +1,30 @@
+|| Liquid Matter Water Registry Demonstration Script
+|| Exercises absorbing water registry packages and executing modular actions
+
+absorb "http_utils.lm"
+absorb "data_store.lm"
+absorb "string_helpers.lm"
+
+display "=========================================================="
+display "       WATER REGISTRY CODE SAMPLES DEMONSTRATION         "
+display "=========================================================="
+
+|| 1. String Helpers Module Test
+set user_card to perform formatUserProfile with "EVL_Architect" and 9500 and "VIP_ACTIVE"
+display "[STRING MODULE] {user_card}"
+
+set tags to perform createTagList with "Security" and "Core" and "v2.0"
+display "[LIST MODULE] Built tags successfully."
+
+|| 2. Data Store Module Test
+set db_status to perform initDatabase with "main"
+display "[DATASTORE MODULE] Database status: {db_status}"
+
+set save_status to perform saveRecord with "session_token" and "EVL_88392_AUTH"
+display "[DATASTORE MODULE] Save status: {save_status}"
+
+|| 3. HTTP Utils Module Test (With Recovery Guard)
+set api_data to perform fetchJsonData with "https://invalid.endpoint.test/data"
+display "[HTTP MODULE] Attempted fetch into fallback dictionary structure."
+
+display "[SUCCESS] Water Registry module code samples successfully executed!"

@@ -1,0 +1,33 @@
+set globalScore to 0
+
+define action heavyMath
+    set local x to 0
+    repeat 5000 times
+        add 5 to x
+        subtract 2 from x
+        multiply x by 1
+    end
+    add x to globalScore
+    display "Async Thread Finished! Added math result to globalScore."
+end
+
+display "Initiating Asynchronous Task Processing..."
+async perform heavyMath
+
+display "Main thread continues executing without blocking!"
+set mainVal to 999
+display "Main Value is {mainVal}"
+
+display "Testing Attempt/Recover blocks for Engine Hardening..."
+attempt
+    set errorTarget to 100
+    divide errorTarget by 0
+recover
+    display "Caught a fatal crash attempt (divide by zero)! Recovered safely."
+end
+
+repeat 3 times
+    display "Engine Main Loop running smoothly..."
+end
+
+Test Production

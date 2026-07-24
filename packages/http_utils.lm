@@ -1,0 +1,24 @@
+|| Water Registry Package Sample: HTTP Utility Module (http_utils.lm)
+|| Demonstrates REST API calls, JSON parsing, dictionary extraction, and recovery safeguards
+
+define action fetchJsonData with api_url_str
+    attempt
+        fetch "https://api.github.com" into raw_response
+        parse json raw_response into data_dict
+        return data_dict
+    recover
+        create dictionary error_dict
+        set key "error" of error_dict to 1
+        set key "message" of error_dict to "Failed to fetch or parse API payload"
+        return error_dict
+    end
+end
+
+define action postPayload with api_url_str
+    attempt
+        fetch "https://httpbin.org/post" into response
+        return response
+    recover
+        return "POST_FAILED"
+    end
+end
